@@ -8,23 +8,27 @@ var which = 0;
 
 
 var clear = function(e){
+    stopit(e);
     svg.innerHTML = "";
-    if(this == growbutton){
+    if(this.id == "grow"){
 	which = 0;
     }
     else{
 	which = 1;
     }
+    console.log(which);
 };
 
 var animate = function(e){
+    stopit(e);
+    svg.innerHTML = "";
     var r = 0;
     var y = 250;
     var w = 70;
     var h = 30;
     var x = 250;
     var dir = -1;
-    var dx = 3;
+    var dx = -1;
     var dy = 2;
     var func;
     var dvd;
@@ -81,22 +85,22 @@ var animate = function(e){
 	dvd.setAttribute("stroke","#000000");
 
 	
-	if(x + dx - r < 0 || x + dx + r > 500){
-	    if(x + dx - r < 0){
-		x = 0 + r;
+	if(x + dx < 0 || x + dx + w > 500){
+	    if(x + dx < 0){
+		x = 0;
 	    }
 	    else{
-		x = 500 - r;
+		x = 500 - w;
 	    }
 	    dx *= -1;
 	}
 
-	if(y + dy - r < 0 || y + dy + r > 500){
-	    if(y + dy - r < 0){
-		y = 0 + r;
+	if(y + dy  < 0 || y + dy + h > 500){
+	    if(y + dy < 0){
+		y = 0;
 	    }
 	    else{
-		y = 500 - r;
+		y = 500 - h;
 	    }
 	    dy *= -1;
 	}
